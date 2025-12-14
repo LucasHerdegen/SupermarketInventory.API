@@ -9,9 +9,9 @@ namespace SupermarketInventory.API.Services
     public interface IProductService
     {
         Task<IEnumerable<ProductDto>> GetProducts();
-        Task<ProductDto> GetProduct(int id);
+        Task<ProductDto?> GetProduct(int id);
         Task<ProductDto> AddProduct(ProductPostDto product);
         Task<ProductDto> UpdateProduct(ProductPutDto product);
-        Task<ProductDto> DeleteProduct(int id);
+        Task<bool> DeleteProduct(int id);
     }
 }

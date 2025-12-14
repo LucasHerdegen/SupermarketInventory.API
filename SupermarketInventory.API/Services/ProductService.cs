@@ -2,35 +2,79 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using SupermarketInventory.API.DTOs;
+using SupermarketInventory.API.Models;
+using SupermarketInventory.API.Repository;
 
 namespace SupermarketInventory.API.Services
 {
     public class ProductService : IProductService
     {
-        public Task<ProductDto> GetProduct(int id)
+        private readonly IRepository<Product> _repository;
+        private readonly IMapper _mapper;
+
+        public ProductService(IRepository<Product> repository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+            _mapper = mapper;
         }
 
-        public Task<IEnumerable<ProductDto>> GetProducts()
+        public async Task<ProductDto?> GetProduct(int id)
         {
-            throw new NotImplementedException();
+            var product = await _repository.GetById(id);
+
+            if (product == null)
+                return null;
+
+            var productDto = _mapper.Map<ProductDto>(product);
+            
+            return productDto;
         }
 
-        public Task<ProductDto> AddProduct(ProductPostDto product)
+        public async Task<IEnumerable<ProductDto>> GetProducts()
         {
-            throw new NotImplementedException();
+            var products = await _repository.Get();
+
+            var productsDto = _mapper.Map<List<ProductDto>>(products);
+
+            return productsDto;
+        }
+        public async Task<ProductDto> AddProduct(ProductPostDto product)
+        {
+            var newProduct = _mapper.Map<Product>(product);
+
+            await _repository.Add(newProduct);
+            await _repository.Save();
+
+            var productDto = _mapper.Map<ProductDto>(newProduct);
+
+            return productDto;
         }
 
-        public Task<ProductDto> DeleteProduct(int id)
+        public async Task<bool> DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            var product = await _repository.GetById(id);
+
+            if (product == null)
+                return false;
+
+            _repository.Delete(product);
+            await _repository.Save();
+
+            return true;
         }
 
-        public Task<ProductDto> UpdateProduct(ProductPutDto product)
+        public async Task<ProductDto> UpdateProduct(ProductPutDto product)
         {
-            throw new NotImplementedException();
+            var productToUpdate = _mapper.Map<Product>(product);
+
+            _repository.Update(productToUpdate);
+            await _repository.Save();
+
+            var productDto = _mapper.Map<ProductDto>(productToUpdate);
+
+            return productDto;
         }
     }
 }

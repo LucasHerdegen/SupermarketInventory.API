@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SupermarketInventory.API.Models;
 
 namespace SupermarketInventory.API.Repository
@@ -18,34 +19,27 @@ namespace SupermarketInventory.API.Repository
         public async Task Add(Product product) =>
             await _context.Products.AddAsync(product);
 
-        public void Delete(Product entity)
-        {
-            throw new NotImplementedException();
-        }
+        public void Delete(Product product) =>
+            _context.Products.Remove(product);
+        
 
-        public Task<bool> Exist(string name)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<bool> Exist(string name) =>
+            await _context.Products.FirstOrDefaultAsync(p => string.Equals(p.Name.ToUpper(), name.ToUpper())) != null;
+        
 
-        public Task<IEnumerable<Product>> Get()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<Product>> Get() =>
+            await _context.Products.ToListAsync();
 
-        public Task<Product> GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Product?> GetById(int id) =>
+            await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
 
-        public Task Save()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Save() =>
+            await _context.SaveChangesAsync();
 
-        public void Update(Product entity)
+        public void Update(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Attach(product);
+            _context.Products.Entry(product).State = EntityState.Modified;
         }
     }
 }

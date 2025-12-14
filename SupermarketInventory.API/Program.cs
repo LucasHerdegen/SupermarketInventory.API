@@ -21,9 +21,11 @@ builder.Services.AddScoped<IProductService, ProductService>();
 
 /* Repositories */
 builder.Services.AddScoped<IRepository<Category>, CategoryRepository>();
+builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
 
 /* Auto Mapper*/
 builder.Services.AddAutoMapper(typeof(CategoryMapper));
+builder.Services.AddAutoMapper(typeof(ProductMapper));
 
 /* Validators */
 builder.Services.AddScoped<IValidator<ProductPostDto>, ProductPostValidator>();
