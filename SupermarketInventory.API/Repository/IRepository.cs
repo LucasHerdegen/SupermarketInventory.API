@@ -7,10 +7,12 @@ namespace SupermarketInventory.API.Repository
 {
     public interface IRepository<T>
     {
-        Task<T> GetById(int id);
+        Task<T?> GetById(int id);
         Task<IEnumerable<T>> Get();
         Task Add(T entity);
         void Update(T entity);
         void Delete(T entity);
+        Task Save();
+        Task<bool> Exist(string name);
     }
 }

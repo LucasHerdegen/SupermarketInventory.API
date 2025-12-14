@@ -4,31 +4,59 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using SupermarketInventory.API.DTOs;
+using SupermarketInventory.API.Models;
 using SupermarketInventory.API.Repository;
 
 namespace SupermarketInventory.API.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IRepository<CategoryRepository> _repository;
+        private readonly IRepository<Category> _repository;
         private readonly IMapper _mapper;
 
-        public CategoryService(IRepository<CategoryRepository> repository, IMapper mapper)
+        public CategoryService(IRepository<Category> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
-        public Task<IEnumerable<CategoryDto>> GetCategories()
+        public async Task<CategoryDto?> GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            var category = await _repository.GetById(id);
 
+            if (category == null)
+                return null;
 
+            var categoryDto = _mapper.Map<CategoryDto>(category);
+
+            return categoryDto;
         }
 
-        public Task<CategoryDto> AddCategory(string categoryName)
+        public async Task<IEnumerable<CategoryDto>> GetCategories()
         {
-            throw new NotImplementedException();
+            var categories = await _repository.Get();
+
+            var categoriesDtos = _mapper.Map<IEnumerable<CategoryDto>>(categories);
+
+            return categoriesDtos;
+        }
+
+        public async Task<CategoryDto?> AddCategory(string categoryName)
+        {
+            if (await _repository.Exist(categoryName))
+                return null;
+
+            var newCategory = new Category
+            {
+                Name = categoryName
+            };
+
+            await _repository.Add(newCategory);
+            await _repository.Save();
+
+            var categoryDto = _mapper.Map<CategoryDto>(newCategory);
+
+            return categoryDto;
         }
     }
 }

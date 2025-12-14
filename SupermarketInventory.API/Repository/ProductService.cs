@@ -8,6 +8,13 @@ namespace SupermarketInventory.API.Repository
 {
     public class ProductService : IRepository<Product>
     {
+        private readonly Context _context;
+
+        public ProductService(Context context)
+        {
+            _context = context;
+        }
+
         public Task Add(Product entity)
         {
             throw new NotImplementedException();
@@ -18,12 +25,22 @@ namespace SupermarketInventory.API.Repository
             throw new NotImplementedException();
         }
 
+        public Task<bool> Exist(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<Product>> Get()
         {
             throw new NotImplementedException();
         }
 
         public Task<Product> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Save()
         {
             throw new NotImplementedException();
         }

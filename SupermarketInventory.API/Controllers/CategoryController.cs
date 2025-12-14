@@ -29,10 +29,26 @@ namespace SupermarketInventory.API.Controllers
             return Ok(categories);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CategoryDto>> GetCategory(int id)
+        {
+            if (id <= 0)
+                return BadRequest();
+
+            var category = await _categoryService.GetCategoryById(id);
+
+            if (category == null)
+                return NotFound();
+
+            return Ok(category);
+        }
+
         [HttpPost]
         public async Task<ActionResult<CategoryDto>> AddCategory(string newCategory)
         {
             var category = await _categoryService.AddCategory(newCategory);
+
+            if (category == null) return Conflict("The category already exists!");
 
             return Ok(category);
         }

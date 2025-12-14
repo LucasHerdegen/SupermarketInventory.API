@@ -2,28 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SupermarketInventory.API.Models;
 
 namespace SupermarketInventory.API.Repository
 {
     public class CategoryRepository : IRepository<Category>
     {
-        public Task Add(Category entity)
+        private readonly Context _context;
+
+        public CategoryRepository(Context context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
+
+        public async Task Add(Category category) =>
+            await _context.Categories.AddAsync(category);
+        
+        public async Task<IEnumerable<Category>> Get() =>
+            await _context.Categories.ToListAsync();
+
+        public async Task<Category?> GetById(int id) =>
+            await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
 
         public void Delete(Category entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Category>> Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Category> GetById(int id)
         {
             throw new NotImplementedException();
         }
@@ -32,5 +34,11 @@ namespace SupermarketInventory.API.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task Save() =>
+            await _context.SaveChangesAsync();
+
+        public async Task<bool> Exist(string name) => 
+            await _context.Categories.FirstOrDefaultAsync(c => string.Equals(c.Name.ToUpper(), name.ToUpper())) != null;
     }
 }

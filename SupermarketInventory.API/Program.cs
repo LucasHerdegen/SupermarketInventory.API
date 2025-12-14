@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SupermarketInventory.API.Mappers;
 using SupermarketInventory.API.Models;
 using SupermarketInventory.API.Repository;
 using SupermarketInventory.API.Services;
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<Context>(options =>
 /* Dependency inyections */
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IRepository<Category>, CategoryRepository>();
+
+/* Auto Mapper*/
+builder.Services.AddAutoMapper(typeof(CategoryMapper));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
