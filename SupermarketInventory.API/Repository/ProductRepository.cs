@@ -6,19 +6,17 @@ using SupermarketInventory.API.Models;
 
 namespace SupermarketInventory.API.Repository
 {
-    public class ProductService : IRepository<Product>
+    public class ProductRepository : IRepository<Product>
     {
         private readonly Context _context;
 
-        public ProductService(Context context)
+        public ProductRepository(Context context)
         {
             _context = context;
         }
 
-        public Task Add(Product entity)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Add(Product product) =>
+            await _context.Products.AddAsync(product);
 
         public void Delete(Product entity)
         {

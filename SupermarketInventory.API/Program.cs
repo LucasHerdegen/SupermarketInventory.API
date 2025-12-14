@@ -1,8 +1,11 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using SupermarketInventory.API.DTOs;
 using SupermarketInventory.API.Mappers;
 using SupermarketInventory.API.Models;
 using SupermarketInventory.API.Repository;
 using SupermarketInventory.API.Services;
+using SupermarketInventory.API.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +15,19 @@ builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ContextConnection"));
 });
 
-/* Dependency inyections */
+/* Services */
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+/* Repositories */
 builder.Services.AddScoped<IRepository<Category>, CategoryRepository>();
 
 /* Auto Mapper*/
 builder.Services.AddAutoMapper(typeof(CategoryMapper));
+
+/* Validators */
+builder.Services.AddScoped<IValidator<ProductPostDto>, ProductPostValidator>();
+builder.Services.AddScoped<IValidator<ProductPutDto>, ProductPutValidator>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
