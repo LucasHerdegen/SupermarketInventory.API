@@ -65,6 +65,24 @@ El sistema está construido sobre una arquitectura de **N-Capas** para asegurar 
 
 5.  **Explorar:**
     Navegá a `http://localhost:5037/swagger` (o el puerto que indique tu consola) para ver la documentación interactiva.
-
 ---
 **Desarrollado por [Lucas Herdegen](https://github.com/LucasHerdegen)** - *Ingeniería en Sistemas de Información UTN-FRBA*
+---
+## 🗄️ Esquema de Base de Datos (Entity-Relationship)
+
+```mermaid
+erDiagram
+    CATEGORY ||--|{ PRODUCT : "contiene"
+    
+    CATEGORY {
+        int Id PK "Primary Key"
+        string Name "Nombre de la categoría"
+    }
+
+    PRODUCT {
+        int Id PK "Primary Key"
+        string Name "Nombre del producto"
+        decimal Price "Precio unitario"
+        int Stock "Cantidad disponible"
+        int CategoryId FK "Foreign Key"
+    }
