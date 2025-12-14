@@ -14,5 +14,6 @@ namespace SupermarketInventory.API.Repository
         void Delete(T entity);
         Task Save();
         Task<bool> Exist(string name);
+        Task<bool> CategoryExist(int id);
     }
 }

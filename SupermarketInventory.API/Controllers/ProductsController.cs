@@ -59,7 +59,7 @@ namespace SupermarketInventory.API.Controllers
             var product = await _productService.AddProduct(productPostDto);
 
             if (product == null)
-                return Conflict("The category already exists!");
+                return Conflict("The product already exists or the category do not exists!");
 
             return CreatedAtAction(nameof(GetProduct), new {id = product.Id}, product);
         }

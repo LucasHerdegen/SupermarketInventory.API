@@ -44,6 +44,9 @@ namespace SupermarketInventory.API.Services
         {
             if (await _repository.Exist(product.Name))
                 return null;
+            
+            if (!await _repository.CategoryExist(product.CategoryId))
+                return null;
 
             var newProduct = _mapper.Map<Product>(product);
 
