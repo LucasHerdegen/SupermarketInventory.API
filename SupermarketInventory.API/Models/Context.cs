@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SupermarketInventory.API.Models
 {
-    public class Context : DbContext
+    public class SupermarketContext : DbContext
     {
-        public Context(DbContextOptions<Context> options) : base(options) 
+        public SupermarketContext(DbContextOptions<SupermarketContext> options) : base(options) 
         {
             
         }

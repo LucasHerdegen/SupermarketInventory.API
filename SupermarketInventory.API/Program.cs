@@ -10,7 +10,7 @@ using SupermarketInventory.API.Validators;
 var builder = WebApplication.CreateBuilder(args);
 
 /* Entity framework*/
-builder.Services.AddDbContext<Context>(options =>
+builder.Services.AddDbContext<SupermarketContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ContextConnection"));
 });

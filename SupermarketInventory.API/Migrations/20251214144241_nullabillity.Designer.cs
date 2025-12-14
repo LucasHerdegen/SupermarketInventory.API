@@ -10,7 +10,7 @@ using SupermarketInventory.API.Models;
 
 namespace SupermarketInventory.API.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(SupermarketContext))]
     [Migration("20251214144241_nullabillity")]
     partial class nullabillity
     {

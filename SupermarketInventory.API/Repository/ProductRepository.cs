@@ -9,9 +9,9 @@ namespace SupermarketInventory.API.Repository
 {
     public class ProductRepository : IRepository<Product>
     {
-        private readonly Context _context;
+        private readonly SupermarketContext _context;
 
-        public ProductRepository(Context context)
+        public ProductRepository(SupermarketContext context)
         {
             _context = context;
         }
@@ -30,10 +30,10 @@ namespace SupermarketInventory.API.Repository
             await _context.Categories.FirstOrDefaultAsync(c => c.Id == id) != null;
 
         public async Task<IEnumerable<Product>> Get() =>
-            await _context.Products.ToListAsync();
+            await _context.Products.Include(p => p.Category).AsNoTracking().ToListAsync();
 
         public async Task<Product?> GetById(int id) =>
-            await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
 
         public async Task Save() =>
             await _context.SaveChangesAsync();

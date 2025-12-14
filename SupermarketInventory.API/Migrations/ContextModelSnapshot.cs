@@ -9,7 +9,7 @@ using SupermarketInventory.API.Models;
 
 namespace SupermarketInventory.API.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(SupermarketContext))]
     partial class ContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
