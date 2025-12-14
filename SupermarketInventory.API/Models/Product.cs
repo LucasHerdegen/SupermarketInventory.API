@@ -13,7 +13,7 @@ namespace SupermarketInventory.API.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
@@ -21,6 +21,6 @@ namespace SupermarketInventory.API.Models
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
+        public required virtual Category Category { get; set; }
     }
 }

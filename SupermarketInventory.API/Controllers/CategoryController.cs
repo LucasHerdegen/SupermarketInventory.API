@@ -48,7 +48,8 @@ namespace SupermarketInventory.API.Controllers
         {
             var category = await _categoryService.AddCategory(newCategory);
 
-            if (category == null) return Conflict("The category already exists!");
+            if (category == null)
+                return Conflict("The category already exists!");
 
             return Ok(category);
         }

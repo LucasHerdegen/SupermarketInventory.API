@@ -40,8 +40,11 @@ namespace SupermarketInventory.API.Services
 
             return productsDto;
         }
-        public async Task<ProductDto> AddProduct(ProductPostDto product)
+        public async Task<ProductDto?> AddProduct(ProductPostDto product)
         {
+            if (await _repository.Exist(product.Name))
+                return null;
+
             var newProduct = _mapper.Map<Product>(product);
 
             await _repository.Add(newProduct);
@@ -65,14 +68,19 @@ namespace SupermarketInventory.API.Services
             return true;
         }
 
-        public async Task<ProductDto> UpdateProduct(ProductPutDto product)
+        public async Task<ProductDto?> UpdateProduct(int id, ProductPutDto productPutDto)
         {
-            var productToUpdate = _mapper.Map<Product>(product);
+            var product = await _repository.GetById(id);
 
-            _repository.Update(productToUpdate);
+            if (product == null)
+                return null;
+
+            _mapper.Map(productPutDto, product);
+
+            _repository.Update(product);
             await _repository.Save();
 
-            var productDto = _mapper.Map<ProductDto>(productToUpdate);
+            var productDto = _mapper.Map<ProductDto>(product);
 
             return productDto;
         }
