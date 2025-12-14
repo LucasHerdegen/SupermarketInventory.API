@@ -39,9 +39,9 @@ namespace SupermarketInventory.API.Repository
             await _context.SaveChangesAsync();
 
         public async Task<bool> Exist(string name) => 
-            await _context.Categories.FirstOrDefaultAsync(c => string.Equals(c.Name.ToUpper(), name.ToUpper())) != null;
+            await _context.Categories.AnyAsync(c => string.Equals(c.Name.ToUpper(), name.ToUpper()));
 
         public async Task<bool> CategoryExist(int id) => 
-            await _context.Categories.FirstOrDefaultAsync(c => c.Id == id) != null;
+            await _context.Categories.AnyAsync(c => c.Id == id);
     }
 }
