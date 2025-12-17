@@ -1,10 +1,10 @@
-# 🛒 Supermarket Inventory API
+# Supermarket Inventory API
 
 Una API RESTful robusta y escalable diseñada para la gestión de inventario de supermercados, permitiendo administrar productos y categorías de manera eficiente.
 
 Este proyecto fue desarrollado siguiendo las mejores prácticas de la industria, enfocándose en una arquitectura desacoplada, código limpio y mantenibilidad.
 
-## 🚀 Tecnologías y Herramientas
+## Tecnologías y Herramientas
 
 * **Core:** .NET 8 (C#)
 * **ORM:** Entity Framework Core (Code-First Approach)
@@ -14,7 +14,7 @@ Este proyecto fue desarrollado siguiendo las mejores prácticas de la industria,
 * **Documentación:** Swagger UI (OpenAPI)
 * **Control de Versiones:** Git & GitHub
 
-## 🏗️ Arquitectura y Patrones de Diseño
+## Arquitectura y Patrones de Diseño
 
 El sistema está construido sobre una arquitectura de **N-Capas** para asegurar la separación de responsabilidades:
 
@@ -29,14 +29,14 @@ El sistema está construido sobre una arquitectura de **N-Capas** para asegurar 
 * **DTOs (Data Transfer Objects):** Para proteger las entidades de dominio y optimizar la transferencia de datos.
 * **Asynchronous Programming:** Uso extensivo de `async/await` para I/O no bloqueante.
 
-## ✨ Funcionalidades Principales
+## Funcionalidades Principales
 
 * **Gestión de Productos:** CRUD completo (Crear, Leer, Actualizar, Borrar) con validaciones de stock y precio.
 * **Gestión de Categorías:** Clasificación de productos.
 * **Relaciones:** Integridad referencial entre Productos y Categorías.
 * **Validaciones Avanzadas:** Reglas de negocio (ej. precios no negativos) aplicadas con FluentValidation.
 
-## ⚙️ Cómo ejecutar el proyecto localmente
+## Cómo ejecutar el proyecto localmente
 
 ### Prerrequisitos
 * [.NET 8 SDK](https://dotnet.microsoft.com/download)
@@ -68,7 +68,7 @@ El sistema está construido sobre una arquitectura de **N-Capas** para asegurar 
 ---
 **Desarrollado por [Lucas Herdegen](https://github.com/LucasHerdegen)** - *Ingeniería en Sistemas de Información UTN-FRBA*
 ---
-## 🗄️ Esquema de Base de Datos (Entity-Relationship)
+## Esquema de Base de Datos (Entity-Relationship)
 
 ```mermaid
 erDiagram
