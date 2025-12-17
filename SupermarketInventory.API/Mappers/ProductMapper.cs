@@ -12,7 +12,7 @@ namespace SupermarketInventory.API.Mappers
     {
         public ProductMapper()
         {
-            CreateMap<Product, ProductDto>().ForMember(dto => dto.CategoryName, m => m.MapFrom(p => p.Category.Name));
+            CreateMap<Product, ProductDto>().ForMember(dto => dto.CategoryName, m => m.MapFrom(p => p.Category!.Name));
             CreateMap<ProductPostDto, Product>();
             CreateMap<ProductPutDto, Product>();
         }

@@ -5,7 +5,7 @@
 namespace SupermarketInventory.API.Migrations
 {
     /// <inheritdoc />
-    public partial class nullabillity : Migration
+    public partial class Nullabillity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

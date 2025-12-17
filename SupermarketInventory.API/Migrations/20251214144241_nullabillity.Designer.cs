@@ -12,7 +12,7 @@ namespace SupermarketInventory.API.Migrations
 {
     [DbContext(typeof(SupermarketContext))]
     [Migration("20251214144241_nullabillity")]
-    partial class nullabillity
+    partial class Nullabillity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

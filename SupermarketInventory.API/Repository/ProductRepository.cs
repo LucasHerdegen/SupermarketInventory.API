@@ -24,7 +24,7 @@ namespace SupermarketInventory.API.Repository
         
 
         public async Task<bool> Exist(string name) =>
-            await _context.Products.AnyAsync(p => string.Equals(p.Name.ToUpper(), name.ToUpper()));
+            await _context.Products.AnyAsync(p => string.Equals(p.Name!.ToUpper(), name.ToUpper()));
         
         public async Task<bool> CategoryExist(int id) =>
             await _context.Categories.AnyAsync(c => c.Id == id);
@@ -38,10 +38,8 @@ namespace SupermarketInventory.API.Repository
         public async Task Save() =>
             await _context.SaveChangesAsync();
 
-        public void Update(Product product)
-        {
-            _context.Products.Attach(product);
-            _context.Products.Entry(product).State = EntityState.Modified;
-        }
+        public void Update(Product product) =>
+            _context.Products.Update(product);
+        
     }
 }
