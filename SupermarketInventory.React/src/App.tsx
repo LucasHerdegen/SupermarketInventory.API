@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import type { Producto } from './producto';
+import type { Product } from './producto';
 import Loading from './Loading';
 import ErrorApi from './ErrorApi';
 import Products from './Products';
+import SearchProducts from './SearchProducts';
 
 function App()
 {
-  const [products, setProducts] = useState<Producto[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,7 +46,13 @@ function App()
     return <ErrorApi error={error}/>
   
   if (products)
-    return <Products products={products} />
+    return (
+      <>
+        <Products products={products} />
+        <hr />
+        <SearchProducts products={products} />
+      </>
+    ); 
 }
 
 export default App

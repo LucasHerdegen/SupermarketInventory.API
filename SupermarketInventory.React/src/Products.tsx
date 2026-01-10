@@ -1,4 +1,4 @@
-import type { Producto } from "./producto";
+import type { Product } from "./producto";
 import Table from "./Table";
 
 export default function Products(props: ProductsProps)
@@ -7,7 +7,7 @@ export default function Products(props: ProductsProps)
 
     return (
         <div className='container'>
-          <h3 className='text-center text-primary' > Ok! </h3>
+          <h3 className='text-center text-success' > Productos </h3> <br />
           <Table products={props.products} />
         </div> 
     );
@@ -16,5 +16,5 @@ export default function Products(props: ProductsProps)
 
 interface ProductsProps
 {
-    products: Producto[]
+    products: Product[]
 } 

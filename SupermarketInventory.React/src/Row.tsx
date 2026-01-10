@@ -1,4 +1,4 @@
-import type { Producto } from "./producto";
+import type { Product } from "./producto";
 
 export default function Row({product}: RowProps)
 {
@@ -15,5 +15,5 @@ export default function Row({product}: RowProps)
 
 interface RowProps
 {
-    product: Producto;
+    product: Product;
 }

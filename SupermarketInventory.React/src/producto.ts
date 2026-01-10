@@ -1,4 +1,4 @@
-interface Producto
+interface Product
 {
     id: number;
     name: string;
@@ -7,4 +7,4 @@ interface Producto
     categoryName: string;
 }
 
-export type { Producto };
+export type { Product };

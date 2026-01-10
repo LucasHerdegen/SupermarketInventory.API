@@ -1,4 +1,4 @@
-import type { Producto } from "./producto";
+import type { Product } from "./producto";
 import Row from "./Row";
 
 export default function Table({products}: TableProps)
@@ -25,5 +25,5 @@ export default function Table({products}: TableProps)
 
 interface TableProps
 {
-    products: Producto[]
+    products: Product[]
 }
