@@ -3,7 +3,6 @@ import type { Product } from './producto';
 import Loading from './Loading';
 import ErrorApi from './ErrorApi';
 import Products from './Products';
-import SearchProducts from './SearchProducts';
 
 function App()
 {
@@ -49,8 +48,6 @@ function App()
     return (
       <>
         <Products products={products} />
-        <hr />
-        <SearchProducts products={products} />
       </>
     ); 
 }
