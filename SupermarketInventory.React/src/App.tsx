@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import type { CartItem, Product } from './producto';
+import type { Product } from './producto';
 import Loading from './Loading';
 import ErrorApi from './ErrorApi';
 import Products from './Products';
-import { ShopingCart } from './ShoppingCart'
+import { ShopingCart, type CartItem } from './ShoppingCart'
 import Cart from './Cart'
 
 function App()
@@ -48,23 +48,33 @@ function App()
     return <ErrorApi error={error}/>
 
   const addProduct = (product: Product) => {
-    const prod = cart.find(p => p.id === product.id);
+    setCart(prevCart => {
+      const itemExists = prevCart.find(item => item.id === product.id);
 
-    if (!prod)
-    {
-      setCart([...cart, {...product, quantity: 1}]);
-      return;
-    }
-
-    prod.quantity++;
-    console.log(prod);
-    setCart(cart);
+      if (itemExists)
+        return prevCart.map(item => 
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      else
+        return [...prevCart, { ...product, quantity: 1 }];
+    });
   }
 
   const removeProduct = (product: Product) => {
-    if (product)
+    setCart(prevCart => {
+      const itemExists = prevCart.find(item => item.id === product.id);
 
-    setCart(cart.filter(p => p.id !== product.id));
+      if (!itemExists)
+        return prevCart;
+
+      if (itemExists.quantity > 1)
+      
+        return prevCart.map(item => 
+          item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
+        );
+      else 
+        return prevCart.filter(item => item.id !== product.id);
+    });
   }
   
   if (products)

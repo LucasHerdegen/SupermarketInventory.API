@@ -1,7 +1,8 @@
 import Add from "./Buttons/Add";
 import Remove from "./Buttons/Remove";
-import type { CartItem, Product } from "./producto";
+import type { Product } from "./producto";
 import Row from "./Row";
+import type { CartItem } from "./ShoppingCart";
 
 export default function Table({products, target, showQuantity}: TableProps)
 {
@@ -16,7 +17,6 @@ export default function Table({products, target, showQuantity}: TableProps)
                         <th scope="col"> Stock </th>
                         <th scope="col"> Category </th>
                         <th scope="col"> Actions </th>
-                        {showQuantity ? <th scope="col"> Quantity</th> : undefined}
                     </tr>
                 </thead>
                 <tbody>
