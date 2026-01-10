@@ -3,12 +3,15 @@ import type { Product } from './producto';
 import Loading from './Loading';
 import ErrorApi from './ErrorApi';
 import Products from './Products';
+import { ShopingCart } from './ShoppingCart'
+import Cart from './Cart'
 
 function App()
 {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [cart, setCart] = useState<Product[]>([]);
 
   useEffect( () => {
     const fetchProducts = async() =>
@@ -43,12 +46,21 @@ function App()
 
   if (error)
     return <ErrorApi error={error}/>
+
+  const addProduct = (product: Product) => {
+    setCart([...cart, product]);
+  }
+
+  const removeProduct = (product: Product) => {
+    setCart(cart.filter(p => p.id !== product.id))
+  }
   
   if (products)
     return (
-      <>
+      <ShopingCart.Provider value={{cart, addProduct, removeProduct}}>
         <Products products={products} />
-      </>
+        <Cart/>
+      </ShopingCart.Provider>
     ); 
 }
 

@@ -1,6 +1,6 @@
 import type { Product } from "./producto";
 
-export default function Row({product}: RowProps)
+export default function Row({product, action}: RowProps)
 {
     return (
         <tr>
@@ -9,6 +9,7 @@ export default function Row({product}: RowProps)
             <th scope="row"> {product.price} </th>
             <th scope="row"> {product.stock} </th>
             <th scope="row"> {product.categoryName} </th>
+            <th scope="row"> {action} </th>
         </tr>
     );
 }
@@ -16,4 +17,5 @@ export default function Row({product}: RowProps)
 interface RowProps
 {
     product: Product;
+    action: React.ReactNode;
 }

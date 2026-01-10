@@ -16,7 +16,7 @@ export default function Products({products}: ProductsProps)
             <h3 className='text-center text-success'> Productos </h3> <br />
             <h3> Ingrese una categoria </h3>
             <input type="text" onChange={e => setFilterString(e.target.value)}/>
-            <Table products={filteredList}/>
+            <Table products={filteredList} target="products"/>
         </div> 
     );
 }
