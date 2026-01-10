@@ -10,7 +10,7 @@ export default function SearchProducts({ products }: SearchProductsProps)
         <div className="container">
             <h3> Ingrese una categoria </h3>
             <input type="text" onChange={e => setFilterString(e.target.value)}/>
-            <Table products={products.filter(p => p.categoryName.toLowerCase().includes(filterString))}/>
+            <Table products={products.filter(p => p.categoryName.toLowerCase().includes(filterString.toLowerCase()))}/>
         </div>
     )
 }
