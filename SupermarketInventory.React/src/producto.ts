@@ -7,4 +7,9 @@ interface Product
     categoryName: string;
 }
 
-export type { Product };
+interface CartItem extends Product
+{
+    quantity: number;
+}
+
+export type { Product, CartItem };

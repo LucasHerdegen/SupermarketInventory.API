@@ -1,6 +1,6 @@
-import type { Product } from "./producto";
+import type { CartItem, Product } from "./producto";
 
-export default function Row({product, action}: RowProps)
+export default function Row({product, action, showQuantity}: RowProps)
 {
     return (
         <tr>
@@ -10,12 +10,14 @@ export default function Row({product, action}: RowProps)
             <th scope="row"> {product.stock} </th>
             <th scope="row"> {product.categoryName} </th>
             <th scope="row"> {action} </th>
+            {showQuantity ? <th scope="row"> {product.quantity}  </th> : undefined}
         </tr>
     );
 }
 
 interface RowProps
 {
-    product: Product;
+    product: Product | CartItem;
     action: React.ReactNode;
+    showQuantity?: boolean;
 }

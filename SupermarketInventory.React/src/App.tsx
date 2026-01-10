@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Product } from './producto';
+import type { CartItem, Product } from './producto';
 import Loading from './Loading';
 import ErrorApi from './ErrorApi';
 import Products from './Products';
@@ -11,7 +11,7 @@ function App()
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
 
   useEffect( () => {
     const fetchProducts = async() =>
@@ -48,11 +48,23 @@ function App()
     return <ErrorApi error={error}/>
 
   const addProduct = (product: Product) => {
-    setCart([...cart, product]);
+    const prod = cart.find(p => p.id === product.id);
+
+    if (!prod)
+    {
+      setCart([...cart, {...product, quantity: 1}]);
+      return;
+    }
+
+    prod.quantity++;
+    console.log(prod);
+    setCart(cart);
   }
 
   const removeProduct = (product: Product) => {
-    setCart(cart.filter(p => p.id !== product.id))
+    if (product)
+
+    setCart(cart.filter(p => p.id !== product.id));
   }
   
   if (products)

@@ -1,9 +1,9 @@
 import Add from "./Buttons/Add";
 import Remove from "./Buttons/Remove";
-import type { Product } from "./producto";
+import type { CartItem, Product } from "./producto";
 import Row from "./Row";
 
-export default function Table({products, target}: TableProps)
+export default function Table({products, target, showQuantity}: TableProps)
 {
     return (
         <div className="table-responsive">
@@ -16,10 +16,11 @@ export default function Table({products, target}: TableProps)
                         <th scope="col"> Stock </th>
                         <th scope="col"> Category </th>
                         <th scope="col"> Actions </th>
+                        {showQuantity ? <th scope="col"> Quantity</th> : undefined}
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map(p => <Row key={p.id} product={p} action={target == "products" ? <Add product={p} /> : <Remove product={p}/>} />)}
+                    {products.map(p => <Row key={p.id} product={p} action={target == "products" ? <Add product={p} /> : <Remove product={p}/>} showQuantity={showQuantity}/>)}
                 </tbody>
             </table>
         </div>
@@ -28,6 +29,7 @@ export default function Table({products, target}: TableProps)
 
 interface TableProps
 {
-    products: Product[]
+    products: Product[] | CartItem[]
     target: string;
+    showQuantity?: boolean;
 }

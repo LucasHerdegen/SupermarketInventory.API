@@ -11,7 +11,7 @@ export default function Cart()
             <>
                 <div className="container">
                     <h3 className='text-center text-success'> Cart </h3> <br />
-                    <Table products={cart} target="cart"/>
+                    <Table products={cart} target="cart" showQuantity={true}/>
                 </div>
             </>
         );
