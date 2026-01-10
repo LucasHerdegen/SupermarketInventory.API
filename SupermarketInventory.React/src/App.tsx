@@ -28,7 +28,7 @@ function App()
       }
       catch (error)
       {
-        console.log(error);
+        console.error(error);
         setError("Fallo la conexión al hacer fetch de los productos");
       }
       finally

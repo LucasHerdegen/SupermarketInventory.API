@@ -4,8 +4,6 @@ import Table from "./Table";
 
 export default function Products({products}: ProductsProps)
 {
-    console.table(products);
-
     const [filterString, setFilterString] = useState('');
 
     const filteredList = useMemo( () => 

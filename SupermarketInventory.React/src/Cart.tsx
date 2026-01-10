@@ -6,7 +6,7 @@ export default function Cart()
 {
     const { cart } = useContext(ShopingCart);
 
-    if (cart.length > 0 || 1 == 1)
+    if (cart.length > 0)
         return (
             <>
                 <div className="container">

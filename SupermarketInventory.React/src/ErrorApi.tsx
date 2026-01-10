@@ -1,6 +1,6 @@
 export default function ErrorApi(props: ErrorApiProps)
 {
-    console.log(props.error);
+    console.error(props.error);
 
     return (
       <div className='container'>
