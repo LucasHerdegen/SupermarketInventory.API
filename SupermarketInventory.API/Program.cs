@@ -35,7 +35,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
+var corsName = "allOrigin";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: corsName, builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors(corsName);
 
 if (app.Environment.IsDevelopment())
 {
@@ -43,7 +57,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.MapGet("/", c =>
 {
     c.Response.Redirect("/swagger");
